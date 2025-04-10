@@ -6,6 +6,11 @@ updateButton();
 
 function slideLeft(){
     if(i <= 0)return;
+    if(isAutoSliding){
+        document.querySelector('.auto').innerHTML = `Auto Slide`;
+        clearInterval(intervalId);
+        isAutoSliding = false;
+    }
     i--;
     styleChange.style.transform = `translateX(${-100 * i}vw)`;
     console.log("Current Index:", i);
@@ -14,6 +19,11 @@ function slideLeft(){
 
 function slideRight(){
     if(i >= total - 1)return;
+    if(isAutoSliding){
+        document.querySelector('.auto').innerHTML = `Auto Slide`;
+        clearInterval(intervalId);
+        isAutoSliding = false;
+    }
     i++;
     styleChange.style.transform = `translateX(${-100 * i}vw)`;
     console.log("Current Index:", i);
