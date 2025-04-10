@@ -11,6 +11,7 @@ function manualCheck(){
     document.querySelector('.auto').innerHTML = `Auto Slide`;
     clearInterval(intervalId);
     isAutoSliding = false;
+    updateButton();
 }
 
 function slideLeft(){
