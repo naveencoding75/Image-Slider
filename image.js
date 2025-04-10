@@ -47,7 +47,7 @@ function automatic(){
         intervalId = setInterval(()=>{
             lastCheck();
             slideRight();
-        }, 1000);
+        }, 2000);
         isAutoSliding = true;
     }else{
         document.querySelector('.auto').innerHTML = `Auto Slide`;
