@@ -40,7 +40,6 @@ let intervalId;
 
 function automatic(){
     manual = false;
-    if(i >= total - 1) return;
 
     if(!isAutoSliding){
         lastCheck();
