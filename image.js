@@ -9,10 +9,6 @@ let intervalId;
 
 function slideLeft() {
     if (i <= 0) return;
-    // Stop auto-sliding if it's active
-    if (isAutoSliding) {
-        stopAutoSlide();
-    }
     i--;
     styleChange.style.transform = `translateX(${-100 * i}vw)`;
     console.log("Current Index:", i);
@@ -21,10 +17,6 @@ function slideLeft() {
 
 function slideRight() {
     if (i >= total - 1) return;
-    // Stop auto-sliding if it's active
-    if (isAutoSliding) {
-        stopAutoSlide();
-    }
     i++;
     styleChange.style.transform = `translateX(${-100 * i}vw)`;
     console.log("Current Index:", i);
@@ -38,14 +30,17 @@ function updateButton() {
 
 function startAutoSlide() {
     document.querySelector('.auto').innerHTML = `Stop`;
+    isAutoSliding = true;
     intervalId = setInterval(() => {
-        if (i >= total - 1) {
-            stopAutoSlide();
+        if (i < total - 1) {
+            i++;
+            styleChange.style.transform = `translateX(${-100 * i}vw)`;
+            console.log("Current Index:", i);
+            updateButton();
         } else {
-            slideRight();
+            stopAutoSlide();
         }
     }, 1000);
-    isAutoSliding = true;
 }
 
 function stopAutoSlide() {
@@ -61,3 +56,14 @@ function automatic() {
         stopAutoSlide();
     }
 }
+
+// Add event listeners to stop auto-slide when manual buttons are clicked
+document.querySelector('.left').addEventListener('click', () => {
+    if (isAutoSliding) stopAutoSlide();
+    slideLeft();
+});
+
+document.querySelector('.right').addEventListener('click', () => {
+    if (isAutoSliding) stopAutoSlide();
+    slideRight();
+});
